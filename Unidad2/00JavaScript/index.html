@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Condicionales</title>
+
+</head>
+<body>
+
+  <h1>Condicionales en JavaScript</h1>
+
+  <!-- IF / ELSE -->
+  <section>
+    <h2>if / else — Edad</h2>
+    <label>Edad: <input type="number" id="edad" value="18" /></label>
+    <button onclick="evalEdad()">Evaluar</button>
+    <p id="out-edad"></p>
+  </section>
+
+  <!-- ELSE IF -->
+  <section>
+    <h2>if / else if / else — Nota</h2>
+    <label>Nota (0-100): <input type="number" id="nota" value="75" /></label>
+    <button onclick="evalNota()">Evaluar</button>
+    <p id="out-nota"></p>
+  </section>
+
+  <!-- SWITCH -->
+  <section>
+    <h2>switch — Día</h2>
+    <label>Día:
+      <select id="dia">
+        <option>lunes</option><option>martes</option><option>miércoles</option>
+        <option>jueves</option><option>viernes</option><option>sábado</option><option>domingo</option>
+      </select>
+    </label>
+    <button onclick="evalSwitch()">Evaluar</button>
+    <p id="out-switch"></p>
+  </section>
+
+  <!-- TERNARIO -->
+  <section>
+    <h2>Ternario ? :</h2>
+    <label>Edad: <input type="number" id="edad2" value="18" /></label>
+    <label>Temperatura: <input type="number" id="temp" value="25" /></label>
+    <button onclick="evalTernario()">Evaluar</button>
+    <p id="out-t1"></p>
+    <p id="out-t2"></p>
+  </section>
+
+  <script src="clase_condicional.js"></script>
+
+</body>
+</html>
