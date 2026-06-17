@@ -69,4 +69,18 @@ console.log(esFinDeSemana || esFeriado)  // true
 
 // NOT (!) → invierte el valor booleano
 const estaLloviendo = true
-console.log(!estaLloviendo)              // false
+console.log(!estaLloviendo) // false
+
+const a = 10
+const b = 20
+const c = "30"
+
+const x = a == b
+const x1 = a === b
+const x2 = a === c
+const x3 = a == c
+
+console.log(x)
+console.log(x1)
+console.log(x2)
+console.log(x3)

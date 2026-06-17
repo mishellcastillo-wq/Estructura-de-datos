@@ -95,3 +95,12 @@ function evalTernario() {
     document.getElementById('out-t1').textContent = '> ' + (edad >= 18 ? "Puede votar" : "No puede votar")
     document.getElementById('out-t2').textContent = '> ' + (temp > 30 ? "Calor" : temp > 15 ? "Templado" : "Frío")
 }
+
+let nombre =  "Fernando";
+if(nombre === "Fernando"){
+  console.log("Hola Fer");
+}else if (nombre ==="Cristian"){
+  console.log("Hola, Cris")
+}else {
+  console.log("no se encontro tu nombre")
+}
