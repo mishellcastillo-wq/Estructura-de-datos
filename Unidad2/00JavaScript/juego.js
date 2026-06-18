@@ -9,5 +9,5 @@ if (numeroJugador === numeroSecreto){
 } else if(numeroJugador < numeroSecreto){
     console.log("número menor!!! Intenta nuevamente")
 }else {
-    console.log("número mayor/muy alto, intenta nuevamente")
+    console.log("número mayor/muy alto, intenta nuevamente") 
 }

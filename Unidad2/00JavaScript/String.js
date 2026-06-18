@@ -10,6 +10,6 @@ console.log(string4)
 
 let frase = 'JavaScript es genial'
 console.log(frase.length)
-console.log(frase.toUpperCase())
+console.log(frase.toUpperCase()) 
 console.log(frase.toLowerCase())
 console.log(frase.substring(0, 10))
