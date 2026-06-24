@@ -38,7 +38,7 @@ class HistorialNavegacion {
     return this.actual;
   }
 
-  // Mostrar todo el historial (de la más antigua a la más reciente) ─
+  // Mostrar todo el historial (de la más antigua a la más reciente)
   mostrarHistorial() {
     console.log('\n--- HISTORIAL DE NAVEGACIÓN ---');
     const paginas = this.historial.verTodos();

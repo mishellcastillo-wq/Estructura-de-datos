@@ -1,0 +1,36 @@
+class NodoArbol {
+    constructor(valor) {
+        this.valor = valor;
+        this.izquierdo = null;
+        this.derecho = null;
+    }
+}
+
+// Las funciones de recorrido deben estar fuera de la clase NodoArbol
+function recorridoInorden(raiz) {
+    if (raiz === null) {
+        // Caso Base: Si el nodo es null, retornamos un arreglo vacío
+        return [];
+    }
+    // Caso Recursivo: Concatenamos el recorrido del subárbol izquierdo, el valor del nodo actual, y el recorrido del subárbol derecho
+    return [...recorridoInorden(raiz.izquierdo), raiz.valor, ...recorridoInorden(raiz.derecho)];
+}
+
+function recorridoPreorden(raiz) {
+    if (raiz === null) {
+        // Caso Base: Si el nodo es null, retornamos un arreglo vacío
+        return [];
+    }
+    // Caso Recursivo: Concatenamos el valor del nodo actual, el recorrido del subárbol izquierdo, y el recorrido del subárbol derecho
+    return [raiz.valor, ...recorridoPreorden(raiz.izquierdo), ...recorridoPreorden(raiz.derecho)];
+}
+
+function recorridoPostorden(raiz) {
+    if (raiz === null) {
+        // Caso Base: Si el nodo es null, retornamos un arreglo vacío
+        return [];
+    }
+    // Caso Recursivo: Concatenamos el recorrido del subárbol izquierdo, el recorrido del subárbol derecho, y el valor del nodo actual
+    return [...recorridoPostorden(raiz.izquierdo), ...recorridoPostorden(raiz.derecho), raiz.valor];
+}
+
