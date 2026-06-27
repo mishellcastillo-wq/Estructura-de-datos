@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vuelo LA-2045 · Check-in &amp; Abordaje</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="fid-header">
+    <div class="fid-left">
+      <div>
+        <div class="fid-label">Vuelo</div>
+        <div class="fid-flight mono">LA-2045</div>
+      </div>
+      <div>
+        <div class="fid-label">Destino</div>
+        <div style="font-size:16px; font-weight:600; margin-top:4px;">Quito (UIO)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CÓMO FUNCIONA -->
+  <div class="how-it-works">
+    <div class="how-title">Cómo funciona esta simulación — sigue el orden de los 3 pasos</div>
+    <div class="steps-row">
+      <div class="step-box">
+        <span class="step-num">1</span>
+        <div class="step-text">
+          <b>Registra pasajeros</b>
+          <span>Escribe un nombre y presiona "Registrar llegada". Se suman al mostrador.</span>
+        </div>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-box">
+        <span class="step-num">2</span>
+        <div class="step-text">
+          <b>Procesa el Check-in</b>
+          <span>Presiona el botón de la columna izquierda. Pasa al primero de la fila hacia Abordaje.</span>
+        </div>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-box">
+        <span class="step-num">3</span>
+        <div class="step-text">
+          <b>Llama a abordar</b>
+          <span>Presiona el botón de la columna derecha. El primero en la fila aborda el avión.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISUALIZACIÓN DE PUNTEROS DE LA COLA CIRCULAR -->
+  <div class="how-it-works" style="border-color: var(--preferente-purple);">
+    <div class="how-title">Estado interno de la Cola Circular (Check-in) — evidencia de los punteros</div>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:center;">
+      <div class="mono" style="font-size:13px;">
+        <span style="color:var(--text-secondary);">capacidad:</span>
+        <span style="color:var(--accent-amber); font-weight:700;" id="ptr-capacidad">20</span>
+      </div>
+      <div class="mono" style="font-size:13px;">
+        <span style="color:var(--text-secondary);">inicio:</span>
+        <span style="color:var(--success-green); font-weight:700;" id="ptr-inicio">0</span>
+      </div>
+      <div class="mono" style="font-size:13px;">
+        <span style="color:var(--text-secondary);">fin:</span>
+        <span style="color:var(--preferente-purple); font-weight:700;" id="ptr-fin">0</span>
+      </div>
+      <div class="mono" style="font-size:13px;">
+        <span style="color:var(--text-secondary);">ocupación:</span>
+        <span style="color:var(--text-primary); font-weight:700;" id="ptr-ocupacion">0/20</span>
+      </div>
+    </div>
+    <div id="ptr-array-visual" style="display:flex; gap:4px; margin-top:14px; flex-wrap:wrap;"></div>
+  </div>
+
+  <!-- MENSAJE DE FEEDBACK -->
+  <div class="feedback-banner" id="feedback-banner"></div>
+
+  <!-- PASO 1: REGISTRO -->
+  <div class="action-panel" id="panel-registro">
+    <div class="action-header">
+      <span class="action-step-num">1</span>
+      <div>
+        <div class="action-title">Registrar llegada de un pasajero</div>
+        <div class="action-subtitle">El pasajero se añade al final de la cola de Check-in (mostrador)</div>
+      </div>
+    </div>
+    <div class="control-row">
+      <input type="text" id="input-nombre" placeholder="Nombre del pasajero, ej: Ana Torres" maxlength="30">
+      <select id="input-clase">
+        <option value="Económica">Clase Económica</option>
+        <option value="Preferente">Clase Preferente</option>
+      </select>
+      <button class="btn-primary" onclick="agregarPasajero()">＋ Registrar llegada</button>
+    </div>
+  </div>
+
+  <!-- PASOS 2 y 3: LAS DOS COLUMNAS CON SUS BOTONES DE ACCIÓN -->
+  <div class="main-grid">
+
+    <!-- COLUMNA: CHECK-IN -->
+    <div class="column">
+      <div class="column-header">
+        <div class="column-title-row">
+          <span class="column-title checkin">② Mostrador de Check-in</span>
+          <span class="column-count mono" id="count-checkin">0</span>
+        </div>
+        <div class="column-subtitle">Pasajeros esperando registrarse, en orden de llegada</div>
+      </div>
+      <div class="column-action">
+        <button class="btn-primary" id="btn-checkin" onclick="ejecutarCheckIn()" disabled>
+          Procesar siguiente Check-in →
+        </button>
+      </div>
+      <div class="column-body" id="cola-checkin">
+        <div class="empty-state">Aún no hay pasajeros.<br>Usa el Paso 1 arriba para registrar uno.</div>
+      </div>
+    </div>
+
+    <!-- FLECHA DE FLUJO -->
+    <div class="flow-arrow">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- COLUMNA: ABORDAJE -->
+    <div class="column">
+      <div class="column-header">
+        <div class="column-title-row">
+          <span class="column-title boarding">③ Puerta de Abordaje</span>
+          <span class="column-count mono" id="count-abordaje">0</span>
+        </div>
+        <div class="column-subtitle">Pasajeros con check-in listo, esperando abordar</div>
+      </div>
+      <div class="column-action">
+        <button class="btn-success" id="btn-abordaje" onclick="ejecutarAbordaje()" disabled>
+          Llamar al siguiente pasajero →
+        </button>
+      </div>
+      <div class="column-body" id="cola-abordaje">
+        <div class="empty-state">Aún no hay pasajeros aquí.<br>Primero completa el Check-in (Paso 2).</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESUMEN DE ABORDADOS -->
+  <div class="boarded-section" id="boarded-section" style="display:none;">
+    <div class="boarded-title">✓ Pasajeros que ya abordaron el avión — <span id="aforo-contador" class="mono">0/20</span></div>
+    <div class="boarded-summary" id="boarded-summary"></div>
+  </div>
+
+  <!-- LOG DE EVENTOS -->
+  <div class="event-log" style="margin-top:20px;">
+    <div class="event-log-title">Registro de actividad</div>
+    <div id="log-container"></div>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

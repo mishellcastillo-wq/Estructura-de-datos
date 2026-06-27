@@ -1,0 +1,393 @@
+:root {
+    --bg-terminal: #0B1929;
+    --bg-panel: #132638;
+    --bg-panel-light: #1B324A;
+    --accent-amber: #FFB627;
+    --accent-amber-dim: rgba(255, 182, 39, 0.12);
+    --text-primary: #EAF2F8;
+    --text-secondary: #7C93A8;
+    --success-green: #3DDC84;
+    --success-dim: rgba(61, 220, 132, 0.12);
+    --border-line: #234158;
+    --preferente-purple: #B98EFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-terminal);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 28px 20px 60px;
+  }
+
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  /* ── HEADER ── */
+  .fid-header {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    padding: 20px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .fid-left { display: flex; align-items: baseline; gap: 18px; }
+  .fid-label { font-size: 11px; letter-spacing: 0.1em; color: var(--text-secondary); text-transform: uppercase; }
+  .fid-flight { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 700; color: var(--accent-amber); }
+
+  /* ── BARRA EXPLICATIVA DE 3 PASOS ── */
+  .how-it-works {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+  }
+
+  .how-title {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+  }
+
+  .steps-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 10px;
+    align-items: center;
+  }
+
+  @media (max-width: 700px) {
+    .steps-row { grid-template-columns: 1fr; }
+    .step-arrow { display: none; }
+  }
+
+  .step-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--bg-panel-light);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    background: var(--accent-amber);
+    color: #1A1306;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-text { font-size: 13px; line-height: 1.4; }
+  .step-text b { display: block; margin-bottom: 2px; color: var(--text-primary); }
+  .step-text span { color: var(--text-secondary); font-size: 12px; }
+
+  .step-arrow {
+    color: var(--text-secondary);
+    font-size: 18px;
+    text-align: center;
+  }
+
+  /* ── PASO 1: Formulario de registro ── */
+  .action-panel {
+    background: var(--bg-panel);
+    border: 2px solid var(--accent-amber);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+
+  .action-panel.dimmed {
+    border-color: var(--border-line);
+    opacity: 0.55;
+  }
+
+  .action-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .action-step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--accent-amber);
+    color: #1A1306;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .action-title { font-size: 15px; font-weight: 700; }
+  .action-subtitle { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+
+  .control-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 14px;
+  }
+
+  input[type="text"] {
+    background: var(--bg-terminal);
+    border: 1px solid var(--border-line);
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    flex: 1;
+    min-width: 160px;
+  }
+  input[type="text"]:focus { outline: 2px solid var(--accent-amber); outline-offset: 1px; }
+
+  select {
+    background: var(--bg-terminal);
+    border: 1px solid var(--border-line);
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+  select:focus { outline: 2px solid var(--accent-amber); outline-offset: 1px; }
+
+  button {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: transform 0.1s ease, opacity 0.15s ease;
+    white-space: nowrap;
+  }
+  button:active { transform: scale(0.97); }
+  button:focus-visible { outline: 2px solid var(--accent-amber); outline-offset: 2px; }
+  button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .btn-primary { background: var(--accent-amber); color: #1A1306; }
+  .btn-primary:hover:not(:disabled) { opacity: 0.88; }
+
+  .btn-success { background: var(--success-green); color: #07261A; }
+  .btn-success:hover:not(:disabled) { opacity: 0.88; }
+
+  /* ── LAYOUT: dos columnas ── */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 48px 1fr;
+    gap: 0;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 760px) {
+    .main-grid { grid-template-columns: 1fr; gap: 16px; }
+    .flow-arrow { display: none; }
+  }
+
+  .column {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+  }
+
+  .column-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-line);
+  }
+
+  .column-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .column-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .column-title.checkin { color: var(--accent-amber); }
+  .column-title.boarding { color: var(--success-green); }
+
+  .column-subtitle {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .column-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: var(--bg-panel-light);
+    padding: 3px 10px;
+    border-radius: 12px;
+    color: var(--text-secondary);
+  }
+
+  .column-action {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border-line);
+  }
+
+  .column-action button { width: 100%; }
+
+  .column-body {
+    padding: 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .empty-state {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-align: center;
+    padding: 30px 16px;
+  }
+
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--border-line);
+  }
+
+  /* ── Tarjeta de pasajero ── */
+  .pass-card {
+    background: var(--bg-panel-light);
+    border: 1px dashed var(--border-line);
+    border-radius: 8px;
+    padding: 11px 13px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .pass-card.preferente { border-color: var(--preferente-purple); background: rgba(185, 142, 255, 0.08); }
+
+  .pass-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: var(--bg-terminal);
+    padding: 4px 7px;
+    border-radius: 5px;
+    min-width: 26px;
+    text-align: center;
+  }
+
+  .pass-info { flex: 1; min-width: 0; }
+  .pass-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pass-class { font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
+  .pass-class.preferente { color: var(--preferente-purple); }
+
+  .badge-front {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: var(--accent-amber-dim);
+    color: var(--accent-amber);
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ── Mensaje de feedback flotante ── */
+  .feedback-banner {
+    background: var(--success-dim);
+    border: 1px solid rgba(61,220,132,0.35);
+    color: var(--success-green);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    display: none;
+    align-items: center;
+    gap: 8px;
+  }
+  .feedback-banner.show { display: flex; }
+
+  /* ── Log de eventos ── */
+  .event-log {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    padding: 16px 20px;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+
+  .event-log-title { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; }
+
+  .log-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .log-line .tag { color: var(--accent-amber); }
+  .log-line .tag.board { color: var(--success-green); }
+
+  /* ── Resumen de abordados ── */
+  .boarded-section { margin-top: 20px; }
+  .boarded-title { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 10px; }
+  .boarded-summary { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .boarded-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: var(--success-dim);
+    color: var(--success-green);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(61,220,132,0.3);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pass-card { animation: none; }
+  }
